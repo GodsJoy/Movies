@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.net.URL;
 import com.example.android.movies.utility.NetworkUtil;
@@ -20,6 +21,9 @@ import com.example.android.movies.models.Movie;
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private Movie [] mMovies; //array of movies processed from TMDB result
+    private TextView sortText;
+    private TextView errorText;
+    private Spinner spinner;
 
     //needed to prevent requesting result from TMDB by the spinner on launch of app
     private boolean sortOptionSelected = false;
@@ -32,7 +36,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         currentlySelectedSortOrder = getResources().getStringArray(R.array.sort_options)[0];
+        spinner = (Spinner) findViewById(R.id.sort_spinner);
+        sortText = (TextView) findViewById(R.id.sort_options);
+        errorText = (TextView) findViewById(R.id.errorTV);
 
+        spinner.setVisibility(View.INVISIBLE);
+        sortText.setVisibility(View.INVISIBLE);
+        errorText.setVisibility(View.INVISIBLE);
         //initial sort order is popular
         searchMovies(getString(R.string.popular));
 
@@ -76,6 +86,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                 mMovies = m; //set array of movies
 
+                spinner.setVisibility(View.VISIBLE);
+                sortText.setVisibility(View.VISIBLE);
+
                 //create a grid view to display poster images
                 //Reference : https://developer.android.com/guide/topics/ui/layout/gridview
                 GridView gridview = (GridView) findViewById(R.id.gridview);
@@ -94,6 +107,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     }
                 });
             }
+            else{
+                errorText.setVisibility(View.VISIBLE);
+            }
 
         }
     }
@@ -103,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     * https://www.tutorialspoint.com/android/android_spinner_control.htm,
     * https://developer.android.com/guide/topics/ui/controls/spinner*/
     private void populateSpinner(){
-        Spinner spinner = (Spinner) findViewById(R.id.sort_spinner);
+
         spinner.setOnItemSelectedListener(this);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.sort_options, android.R.layout.simple_spinner_item);
