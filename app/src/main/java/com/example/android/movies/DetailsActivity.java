@@ -38,14 +38,14 @@ public class DetailsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if(intent == null){
             //close app if intent is null
-            closeOnError();
+            closeAndReportError();
         }
 
         //get extra data from intent which is a Movie object
         Movie m = intent.getParcelableExtra(EXTRA_POSITION);
         if(m == null){
             //close app if object is null
-            closeOnError();
+            closeAndReportError();
             return;
         }
         //populate activity_details using Movie data
@@ -64,7 +64,7 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     //Reference : SandWich project in this Phase
-    private void closeOnError(){
+    private void closeAndReportError(){
         finish();
         Toast.makeText(this, "Error encountered", Toast.LENGTH_SHORT);
     }

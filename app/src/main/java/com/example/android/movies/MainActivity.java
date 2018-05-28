@@ -118,7 +118,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
         String selectedOption = (String) parent.getItemAtPosition(pos);
-        Log.d("Spinner", selectedOption+" "+currentlySelectedSortOrder);
 
         if (sortOptionSelected) {
             if(!selectedOption.equals(currentlySelectedSortOrder)) {

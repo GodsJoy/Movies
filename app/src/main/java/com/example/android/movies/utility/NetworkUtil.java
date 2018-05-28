@@ -46,8 +46,8 @@ public class NetworkUtil {
         HttpURLConnection con = null;
         try {
             con = (HttpURLConnection) url.openConnection();
-            InputStream in = con.getInputStream();
-            Scanner scn = new Scanner(in);
+            InputStream input = con.getInputStream();
+            Scanner scn = new Scanner(input);
             scn.useDelimiter("\\A");
 
             if(scn.hasNext()){
