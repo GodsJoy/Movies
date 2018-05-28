@@ -20,7 +20,7 @@ public class NetworkUtil {
     final static String PARAM_QUERY = "api_key";
 
     //key obtained from TMDB. Please initialize key with correct key
-    final static String key = "0c6de49f4f02c733fe6152ce2e0288b6";
+    final static String key = "";
 
     //builds url for using a specified sorted order, popular or top_rated
     //Reference : SunShine App in Grow with Google Phase 1
