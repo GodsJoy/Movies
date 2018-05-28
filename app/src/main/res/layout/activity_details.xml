@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/posterIV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/poster"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:id="@+id/titleText"
+            android:text="@string/original_title"
+            android:layout_below="@id/posterIV"
+            style="@style/TitleTheme"/>
+        <TextView
+            android:id="@+id/titleTV"
+            android:layout_below="@id/posterIV"
+            android:layout_toEndOf="@id/titleText"
+            android:layout_toRightOf="@id/titleText"
+            style="@style/DetailsTheme"/>
+
+        <TextView
+            android:id="@+id/dateText"
+            android:text="@string/release_date"
+            android:layout_below="@id/titleText"
+            style="@style/TitleTheme"/>
+        <TextView
+            android:id="@+id/releaseDateTV"
+            android:layout_below="@id/titleText"
+            android:layout_toEndOf="@id/dateText"
+            android:layout_toRightOf="@id/dateText"
+            style="@style/DetailsTheme"/>
+
+        <TextView
+            android:id="@+id/voteText"
+            android:text="@string/vote_average"
+            android:layout_below="@id/dateText"
+            style="@style/TitleTheme"/>
+        <TextView
+            android:id="@+id/voteAVGTV"
+            android:layout_below="@id/dateText"
+            android:layout_toEndOf="@id/voteText"
+            android:layout_toRightOf="@id/voteText"
+            style="@style/DetailsTheme"/>
+
+        <TextView
+            android:id="@+id/synopsisText"
+            android:text="@string/synopsis"
+            android:layout_below="@id/voteText"
+            style="@style/TitleTheme"
+            />
+        <TextView
+            android:id="@+id/synopsisTV"
+            android:layout_below="@id/synopsisText"
+            style="@style/DetailsTheme"
+            android:layout_marginTop="10dp"/>
+    </RelativeLayout>
+</ScrollView>

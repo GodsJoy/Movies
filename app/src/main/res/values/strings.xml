@@ -1,3 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Movies</string>
+    <string name="details_name">Movie Details</string>
+    <string-array name="sort_options">
+        <item>Popular</item>
+        <item>Top rated</item>
+    </string-array>
+
+    <string name="popular">popular</string>
+    <string name="top_rated">top_rated</string>
+
+    <string name="original_title">Original Title : </string>
+    <string name="synopsis">Synopsis</string>
+    <string name="poster">Movie Poster</string>
+    <string name="release_date">Release Date : </string>
+    <string name="vote_average">Vote Average : </string>
+
 </resources>
