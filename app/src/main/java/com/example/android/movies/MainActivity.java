@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -51,7 +53,8 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         currentlySelectedSortOrder = getResources().getStringArray(R.array.sort_options)[0];
-        //spinner = (Spinner) findViewById(R.id.sort_spinner);
+        //spinner = (Sp
+        // inner) findViewById(R.id.sort_spinner);
         //sortText = (TextView) findViewById(R.id.sort_options);
         errorText = (TextView) findViewById(R.id.errorTV);
 
@@ -59,12 +62,12 @@ public class MainActivity extends AppCompatActivity implements
         //sortText.setVisibility(View.INVISIBLE);
         errorText.setVisibility(View.INVISIBLE);
 
-
+        //Log.d("MainActivity", "got here0");
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_movie);
         RecyclerView.LayoutManager layoutManager =
                 new GridLayoutManager(this, 2);
         mRecyclerView.setLayoutManager(layoutManager);
-
+        //Log.d("MainActivity", "got here1");
         mRecyclerView.setHasFixedSize(true);
 
         mMovieAdapter = new MoviesAdapter(this, this);
@@ -77,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements
         loaderBundle.putCharSequence("sort_order", getString(R.string.popular));
 
         getSupportLoaderManager().initLoader(MOVIE_LOADER_ID, loaderBundle, callback);
-
+        //Log.d("MainActivity", "got here3");
         //initial sort order is popular
         //searchMovies(getString(R.string.popular));
 
@@ -95,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements
         //process request in a background thread
         //new MoviesSearchTask().execute(movies);
         getSupportLoaderManager().restartLoader(MOVIE_LOADER_ID, loaderBundle, this);
-
+        //Log.d("MainActivity", "got here4");
     }
 
     /*//Reference : Sunshine app Grow with Google Phase 1
@@ -268,6 +271,28 @@ public class MainActivity extends AppCompatActivity implements
         mRecyclerView.setVisibility(View.INVISIBLE);
 
         errorText.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.sort_option_menu, menu );
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == R.id.popular_menu){
+            searchMovies(getString(R.string.popular));
+            return true;
+        }
+        if(id == R.id.top_rated_menu){
+            searchMovies(getString(R.string.top_rated));
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     //it does nothing :)

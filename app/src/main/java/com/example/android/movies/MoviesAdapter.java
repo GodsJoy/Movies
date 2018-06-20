@@ -4,10 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.android.movies.models.Movie;
@@ -37,9 +39,10 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesAdap
     @Override
     public MoviesAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         int layoutID = R.layout.movies_list;
-        View view = LayoutInflater.from(mContext).inflate(layoutID, parent, false);
+        //Log.d("BeforeCast", "worked before cast");
+        View view = LayoutInflater.from(parent.getContext()).inflate(layoutID, parent, false);
         //view.setFocusable(true);
-
+        //Log.d("AfterCast", "still worked after cast");
         return new MoviesAdapterViewHolder(view);
     }
 
@@ -47,10 +50,13 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesAdap
     public class MoviesAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public final ImageView mImageView;
         public MoviesAdapterViewHolder(View view){
+
             super(view);
+            //Log.d("InViewHolder", "got here");
 
             mImageView = (ImageView) view.findViewById(R.id.movieIV);
             view.setOnClickListener(this);
+            //Log.d("InViewHolder", "got here2");
 
         }
 
@@ -67,18 +73,12 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesAdap
 
     @Override
     public void onBindViewHolder(MoviesAdapterViewHolder movieHolder, int position) {
-        //super.onBindViewHolder(holder, position, payloads);
-        // if it's not recycled, initialize some attributes
-
-        movieHolder.mImageView.setLayoutParams(new ViewGroup.LayoutParams(350, 350));
-        movieHolder.mImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        movieHolder.mImageView.setPadding(2, 2, 2, 2);
-
-
         //let Picasso load image using complete image path
+        movieHolder.mImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         Picasso.with(mContext).load(Movie.IMAGE_PATH.concat(allMovies[position].getposterPath())).into(movieHolder.mImageView);
         //set imageID with position to be used when image is clicked
         movieHolder.mImageView.setId(position);
+        //Log.d("Bind", "got to bind3");
 
     }
 
@@ -91,6 +91,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesAdap
     }
 
     public void setMoviesData(Movie [] moviesData){
+        //Log.d("Notify", moviesData.length+"got here lenght");
         allMovies = moviesData;
         notifyDataSetChanged();
     }
